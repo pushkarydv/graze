@@ -45,17 +45,25 @@ def get_discount(coupon):
 
 def product(id):
     coupon = request.args.get('coupon', 'No Coupon Applied')
-
-    return {
-        'product_id': id,
-        'product_name': get_product(id),
-        'coupon': coupon,
-        'discount': get_discount(coupon),
-        'price': get_product(id)['price'] / 100 * (100 - get_discount(coupon))
-    }
+    try:
+        return {
+            'product_id': id,
+            'product_name': get_product(id),
+            'coupon': coupon,
+            'discount': get_discount(coupon),
+            'price': get_product(id)['price'] / 100 * (100 - get_discount(coupon))
+        }
+    except Exception as e:
+        return {
+            'error': str(e)
+        }
 
 @app.route('/product/<int:id>')
 def product_page(id):
+    
+    if id not in productData:
+        return render_template('product.html')
+    
     return render_template('product.html', product=product(id))
 
 # Running debugger in console
