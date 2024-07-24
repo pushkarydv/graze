@@ -1,15 +1,16 @@
 from flask import Flask, jsonify, request
 
+
 app = Flask(__name__)
 
-data = {
-    'items': []
-}
 
+# Route served as a static page
 @app.route('/')
 def home():
     return 'Hellooooo'
 
+
+# Route with method served as JSON API
 @app.route('/product', methods=['GET'])
 def product():
     url = request.url
@@ -17,5 +18,7 @@ def product():
         'get-request-served-from' : url
     })
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+
+# Running debugger in console
+if __name__ == '__main__':
+    app.run(debug=True)
