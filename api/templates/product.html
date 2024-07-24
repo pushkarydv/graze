@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Product</title>
+    <style>
+        * {  
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .product-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .product-container p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .product-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .product-price {
+            font-size: 20px;
+            color: #0066cc;
+        }
+        
+        .product-discount {
+            color: #009900;
+        }
+        
+        .product-final-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #cc0000;
+        }
+        
+        .product-coupon {
+            background-color: #ffffcc;
+            border: 1px dashed #cccc00;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        
+        h1 {
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    {% if product %}
+    <div class="product-container">
+        <p class="product-name">{{ product.product_name['name'] }}</p>
+        <p class="product-price">Original Price: ${{ product.product_name['price'] }}</p>
+        <p class="product-discount">Discount: {{ product.discount }}%</p>
+        <p class="product-final-price">Final Price: ${{ product.price }}</p>
+        <p class="product-coupon">Coupon: {{ product.coupon }}</p>
+    </div>
+    {% else %}
+        <h1>Product not found</h1>
+    {% endif %}
+</body>
+</html>
