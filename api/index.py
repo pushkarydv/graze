@@ -60,10 +60,6 @@ def product(id):
 
 @app.route('/product/<int:id>')
 def product_page(id):
-    
-    if id not in productData:
-        return render_template('product.html')
-    
     return render_template('product.html', product=product(id))
 
 # Running debugger in console
